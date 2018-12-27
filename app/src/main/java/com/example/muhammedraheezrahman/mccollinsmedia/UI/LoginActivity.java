@@ -45,6 +45,7 @@ public class LoginActivity extends RootActivity {
     private RelativeLayout relativeLayout;
     Snackbar snackbar;
     boolean validEmail;
+    String emailFromIntent,passwordFromIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +60,17 @@ public class LoginActivity extends RootActivity {
         relativeLayout = (RelativeLayout) findViewById(R.id.relativelayout);
 
         Glide.with(LoginActivity.this).load(R.drawable.mccollinsmediadubai).into(logoImage);
+
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle!=null){
+            emailFromIntent =bundle.getString("Email");
+            passwordFromIntent = bundle.getString("Password");
+            if (!emailFromIntent.isEmpty()){
+                emailEt.setText(emailFromIntent);
+                passwordEt.setText(passwordFromIntent);
+            }
+        }
 
 
 

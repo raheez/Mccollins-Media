@@ -118,8 +118,15 @@ public class RegistrationActivity  extends RootActivity implements View.OnClickL
                         Toast.makeText(getApplicationContext(),"Registration Succesfull",Toast.LENGTH_SHORT).show();
 
 
-                        new PrefManager(getApplicationContext()).saveEmail(email);
-                        Intent i = new Intent(RegistrationActivity.this,MainActivity.class);
+
+//                        new PrefManager(getApplicationContext()).saveEmail(email);
+
+                        Bundle bundle= new Bundle();
+                        bundle.putString("Email", email);
+                        bundle.putString("Password",confirmPassword);
+
+                        Intent i = new Intent(RegistrationActivity.this,LoginActivity.class);
+                        i.putExtras(bundle);
                         startActivity(i);
                         finish();
                     }

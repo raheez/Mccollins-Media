@@ -44,10 +44,10 @@ class ViewHolder extends RecyclerView.ViewHolder{
                 Destination.DestinationDetail detail = RecyclerAdapter.list.get(getAdapterPosition());
 
                 String url = detail.getSitelink().toString();
-                Bundle ePzl= new Bundle();
-                ePzl.putString("key_url", url);
+                Bundle bundle= new Bundle();
+                bundle.putString("key_url", url);
                 Intent i = new Intent(v.getContext(),DetailActivity.class);
-                i.putExtras(ePzl);
+                i.putExtras(bundle);
                 v.getContext().startActivity(i);
             }
         });

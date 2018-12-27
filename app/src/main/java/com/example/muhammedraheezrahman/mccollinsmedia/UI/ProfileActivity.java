@@ -219,15 +219,27 @@ public class ProfileActivity extends RootActivity{
             @Override
             public void onResponse(retrofit2.Call<LoginDetails> call, Response<LoginDetails> response) {
                 LoginDetails loginResponse = response.body();
-                for (LoginDetails.User user : loginResponse.getData()){
-                    userData = user;
+                if(loginResponse.getIserror().equals("No")){
 
-                    shimmerFrameLayout.stopShimmer();
-                    shimmerFrameLayout.setVisibility(View.GONE);
-                    profileLayout.setVisibility(View.VISIBLE);
+                    for (LoginDetails.User user : loginResponse.getData()){
+                        userData = user;
+
+                        shimmerFrameLayout.stopShimmer();
+                        shimmerFrameLayout.setVisibility(View.GONE);
+                        profileLayout.setVisibility(View.VISIBLE);
+                    }
+                    setUserDetails(userData);
+                    Toast.makeText(getApplicationContext(),"User Data Fetched Successfull",Toast.LENGTH_SHORT).show();
                 }
-                setUserDetails(userData);
-                Toast.makeText(getApplicationContext(),"User Data Fetched Successfull",Toast.LENGTH_SHORT).show();
+                else if (loginResponse.getIserror().equals("Yes")){
+                    Toast.makeText(getApplicationContext()," User Data Fetching Failed",Toast.LENGTH_SHORT).show();
+                    profileLayout.setVisibility(View.INVISIBLE);
+                    shimmerFrameLayout.setVisibility(View.VISIBLE);
+
+                }
+
+
+
             }
 
             @Override
