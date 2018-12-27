@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+
+            >
+
+            <View
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:id="@+id/profilepic"
+                android:background="@color/greycolor"
+                />
+
+            <View
+                android:id="@+id/firstnameEt"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/profilepic"
+                android:background="@color/greycolor"
+                />
+
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/lastnameET"
+                android:layout_below="@id/firstnameEt"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/greycolor"
+
+
+                />
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/emailET"
+                android:layout_below="@id/lastnameET"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:textSize="15sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/greycolor"
+                />
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/mobileEt"
+                android:layout_below="@id/emailET"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/greycolor"
+
+                />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:id="@+id/calander"
+                android:layout_margin="10dp"
+                android:layout_below="@id/mobileEt"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="@color/greycolor"
+
+                ></View>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:id="@+id/genderspinner"
+                android:layout_below="@id/calander"
+                android:layout_marginTop="20dp"
+                android:layout_margin="10dp"
+                android:background="@color/greycolor">
+
+            </View>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

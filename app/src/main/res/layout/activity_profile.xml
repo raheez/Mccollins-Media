@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            >
+
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foregroundGravity="center"
+                app:shimmer_duration="900"
+                android:id="@+id/shimmer_profile"
+
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/shimmer_profile_layout"/>
+                </LinearLayout>
+
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/belowShimmerprofile"
+                android:layout_below="@+id/shimmer_profile">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/profilePic"
+                    android:layout_alignWithParentIfMissing="true"
+                    android:src="@drawable/user_pic"/>
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/firstNameEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@id/profilePic"
+                    android:textSize="15sp"
+                    android:hint="First Name"
+                    android:textColor="#000000"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:inputType="textCapWords"
+                    android:textColorHint="@color/darkgrey"
+                    />
+
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/lastNameEt"
+                    android:layout_below="@id/firstNameEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="30dp"
+                    android:textSize="15sp"
+                    android:hint="LastName"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="#000000"
+                    android:inputType="textCapWords"
+                    android:textColorHint="@color/darkgrey"
+
+                    />
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/emailEt"
+                    android:layout_below="@id/lastNameEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="30dp"
+                    android:hint="Email"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="#000000"
+                    android:inputType="textEmailAddress"
+                    android:textColorHint="@color/darkgrey"
+                    />
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/mobilenoEt"
+                    android:layout_below="@id/emailEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="15sp"
+                    android:layout_marginTop="30dp"
+                    android:hint="Mobile Number"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textColor="#000000"
+                    android:inputType="number"
+                    android:textColorHint="@color/darkgrey"
+                    />
+
+
+                <CalendarView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/calanderDob"
+                    android:layout_margin="10dp"
+                    android:layout_below="@id/mobilenoEt"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
+
+                    ></CalendarView>
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/genderSpinner"
+                    android:layout_below="@id/calanderDob"
+                    android:layout_marginTop="20dp"
+                    android:layout_margin="10dp">
+
+                </android.support.v7.widget.AppCompatSpinner>
+                <Button
+                    android:id="@+id/updateButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Update"
+                    android:layout_marginBottom="20dp"
+                    android:visibility="visible"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_below="@id/genderSpinner"
+                    android:background="@drawable/rounded_corneres"/>
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

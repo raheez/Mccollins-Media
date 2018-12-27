@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_margin="10dp"
+        android:elevation="4dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="6dp"
+        >
+        <RelativeLayout
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <View
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"/>
+
+            <RelativeLayout
+                android:id="@+id/contactrv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/titletv"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@id/titletv">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/contactnos"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/contactno"
+                android:text="123456789"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@id/titletv"
+                android:layout_marginRight="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/distanceTv"
+                android:text="2.6KM"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_alignBaseline="@id/descTv"
+                android:layout_below="@id/contactno"/>
+
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/imageicon"
+                android:src="@drawable/place_icon"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/titletv"
+                android:text="Sample Data"
+                android:layout_margin="10dp"
+                android:layout_toRightOf="@id/imageicon"
+                android:layout_toLeftOf="@id/contactno"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="bold"
+                />
+
+
+
+            <TextView
+                android:id="@+id/descTv"
+                android:layout_alignLeft="@id/titletv"
+                android:maxLines="2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:layout_toLeftOf="@id/distanceTv"
+                android:layout_below="@id/titletv"
+                 />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+</RelativeLayout>
