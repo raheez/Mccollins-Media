@@ -26,6 +26,8 @@ public interface ApiInterface {
     @POST("getUser?")
     Call<LoginDetails> getUser(@Body RequestBody params);
 
+    @POST("updateUser?")
+    Call<LoginDetails> updateUser(@Body RequestBody params);
 
 
 

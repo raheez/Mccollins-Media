@@ -44,6 +44,7 @@ public class LoginActivity extends RootActivity {
     private ImageView logoImage;
     private RelativeLayout relativeLayout;
     Snackbar snackbar;
+    boolean validEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,16 +67,16 @@ public class LoginActivity extends RootActivity {
             public void onClick(View v) {
                 email = emailEt.getText().toString();
                 password = passwordEt.getText().toString();
-//                if (!email.isEmpty() && !password.isEmpty()){
-//
-//                        if(isValidEmail(email))
-//                    login(email,password);
-//                }
-                try {
-                    login("ran@gmail.com","abc");
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                validEmail = isValidEmail(email);
+                if (!validEmail){
+                    emailEt.setError("Email not valid");
                 }
+                if (!email.isEmpty() && !password.isEmpty()){
+
+                     if(isValidEmail(email))
+                    login(email,password);
+                }
+
 
             }
         });
@@ -88,7 +89,7 @@ public class LoginActivity extends RootActivity {
         });
     }
 
-    private void login(final String email, String password) throws JSONException {
+    private void login(final String email, String password)  {
 
 
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
@@ -105,25 +106,32 @@ public class LoginActivity extends RootActivity {
             @Override
             public void onResponse(retrofit2.Call<LoginDetails> call, Response<LoginDetails> response) {
                 LoginDetails loginResponse = response.body();
-                for (LoginDetails.User user : loginResponse.getData()){
-                    userData = user;
-                    new PrefManager(LoginActivity.this).saveObjectToSharedPreference(LoginActivity.this,userData);
-                    new PrefManager(LoginActivity.this).saveEmail(email);
-                    new PrefManager(LoginActivity.this).saveUserId(userData.getUserId().toString());
+                if(loginResponse.getIserror().equals("No")){
+
+                    for (LoginDetails.User user : loginResponse.getData()){
+                        userData = user;
+                        new PrefManager(LoginActivity.this).saveObjectToSharedPreference(LoginActivity.this,userData);
+                        new PrefManager(LoginActivity.this).saveEmail(email);
+                        new PrefManager(LoginActivity.this).saveUserId(userData.getUserId().toString());
 
 
 
+                    }
+                Toast.makeText(getApplicationContext(),"Login Successfull",Toast.LENGTH_SHORT).show();
+
+                    Intent i = new Intent(LoginActivity.this,MainActivity.class);
+                    startActivity(i);
+                    finish();
                 }
-//                Toast.makeText(getApplicationContext(),"Successfull",Toast.LENGTH_SHORT).show();
+                else if (loginResponse.getIserror().equals("Yes")){
+                    Toast.makeText(getApplicationContext(),"Login Failed",Toast.LENGTH_SHORT).show();
+                }
 
-                Intent i = new Intent(LoginActivity.this,MainActivity.class);
-                startActivity(i);
-                finish();
             }
 
             @Override
             public void onFailure(retrofit2.Call<LoginDetails> call, Throwable t) {
-//                Toast.makeText(getApplicationContext(),"Failure",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Login Failed",Toast.LENGTH_SHORT).show();
 
 
             }

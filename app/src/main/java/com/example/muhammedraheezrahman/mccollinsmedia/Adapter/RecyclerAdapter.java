@@ -25,7 +25,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 class ViewHolder extends RecyclerView.ViewHolder{
 
     CircleImageView imageView;
-    TextView titleTv,descTv,contactTv,distanceTv;
+    TextView titleTv,descTv,contactTv,distanceTv,timingDetailsTv;
     RelativeLayout contactRv;
     public ViewHolder(@NonNull final View itemView) {
         super(itemView);
@@ -35,6 +35,7 @@ class ViewHolder extends RecyclerView.ViewHolder{
         distanceTv = (TextView) itemView.findViewById(R.id.distanceTv);
         imageView = (CircleImageView) itemView.findViewById(R.id.imageicon);
         contactRv = (RelativeLayout) itemView.findViewById(R.id.contactrv);
+        timingDetailsTv = (TextView) itemView.findViewById(R.id.timingDetails);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +96,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder>  {
         viewHolder.descTv.setText(details.getDescription());
         Glide.with(context).load(details.getImage()).into(viewHolder.imageView);
 
+        if (!details.getTiming().isEmpty()){
+            viewHolder.timingDetailsTv.setText(details.getTiming());
+        }
 
 
     }

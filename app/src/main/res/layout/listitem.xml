@@ -45,6 +45,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/contactno"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-medium"
                 android:text="123456789"
                 android:layout_alignParentRight="true"
                 android:layout_alignTop="@id/titletv"
@@ -55,10 +58,20 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/distanceTv"
                 android:text="2.6KM"
+                android:layout_marginTop="10dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                android:layout_alignBaseline="@id/descTv"
                 android:layout_below="@id/contactno"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/timingDetails"
+                android:layout_below="@id/distanceTv"
+                android:layout_marginRight="10dp"
+                android:textSize="11sp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"/>
 
 
 

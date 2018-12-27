@@ -68,8 +68,8 @@ public class ProfileActivity extends RootActivity{
     long dateLong;
     public CircleImageView profilePic;
     private static int RESULT_LOAD_IMAGE = 1;
-
-
+    public Button updateButton;
+    Uri selectedImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +83,7 @@ public class ProfileActivity extends RootActivity{
         profilePic = (CircleImageView) findViewById(R.id.profilePic);
         calendarView = (CalendarView) findViewById(R.id.calanderDob);
         genderSpinner = (Spinner) findViewById(R.id.genderSpinner);
+        updateButton = (Button) findViewById(R.id.updateButton);
 
         genderlist = new ArrayList<>();
         genderlist.add("Male");
@@ -99,6 +100,7 @@ public class ProfileActivity extends RootActivity{
         userId = preferenceManager.getUserId();
 
         getUser(userId);
+
 
 
 
@@ -174,7 +176,7 @@ public class ProfileActivity extends RootActivity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
+             selectedImage = data.getData();
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
             Cursor cursor = getContentResolver().query(selectedImage,
@@ -249,6 +251,48 @@ public class ProfileActivity extends RootActivity{
         }
         calendarView.setDate(dateLong);
 
+    }
+    private void updateUser(){
+
+        Map<String, String> jsonParams = new ArrayMap<>();
+
+        ((ArrayMap<String, String>) jsonParams).put("uer_id",userId);
+        ((ArrayMap<String, String>) jsonParams).put("email",email);
+        ((ArrayMap<String, String>) jsonParams).put("fname",firstName);
+        ((ArrayMap<String, String>) jsonParams).put("lname",lastName);
+        ((ArrayMap<String, String>) jsonParams).put("mobile",mobile);
+        ((ArrayMap<String, String>) jsonParams).put("dob",dob);
+        ((ArrayMap<String, String>) jsonParams).put("gender",gender);
+        ((ArrayMap<String, String>) jsonParams).put("userimage",selectedImage.getPath().toString());
+
+
+
+
+
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), (new JSONObject(jsonParams)).toString());
+
+        retrofit2.Call<LoginDetails> call = apiInterface.updateUser(body);
+        call.enqueue(new Callback<LoginDetails>() {
+            @Override
+            public void onResponse(retrofit2.Call<LoginDetails> call, Response<LoginDetails> response) {
+                LoginDetails loginResponse = response.body();
+                for (LoginDetails.User user : loginResponse.getData()){
+                    userData = user;
+
+                    shimmerFrameLayout.stopShimmer();
+                    shimmerFrameLayout.setVisibility(View.GONE);
+                    profileLayout.setVisibility(View.VISIBLE);
+                }
+//                setUserDetails(userData);
+                Toast.makeText(getApplicationContext(),"Updated Successfull",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<LoginDetails> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),"Updation Failed",Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 }
 
