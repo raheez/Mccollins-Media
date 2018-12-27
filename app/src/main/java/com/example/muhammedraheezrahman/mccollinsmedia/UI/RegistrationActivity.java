@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.muhammedraheezrahman.mccollinsmedia.Model.RegistrationResponse;
 import com.example.muhammedraheezrahman.mccollinsmedia.Networking.ApiClient;
 import com.example.muhammedraheezrahman.mccollinsmedia.Networking.ApiInterface;
+import com.example.muhammedraheezrahman.mccollinsmedia.PreferanceManager.PrefManager;
 import com.example.muhammedraheezrahman.mccollinsmedia.R;
 
 import org.json.JSONObject;
@@ -37,7 +38,8 @@ public class RegistrationActivity  extends RootActivity implements View.OnClickL
     private TextInputEditText firstNameEt,lastNameEt,emailEt,passwordEt,mobileEt,confirmPasswordEt;
     Spinner genderSpinner;
     CalendarView calendarView;
-    String firstName,lastName,email,mobile,password,confirmPassword,gender,dob;
+    String firstName,lastName,email,mobile,password,confirmPassword,dob;
+    String gender = "Male";
     Button signupButton;
     List<String> genderlist;
     boolean validEmail = false;
@@ -111,8 +113,12 @@ public class RegistrationActivity  extends RootActivity implements View.OnClickL
                 public void onResponse(Call<RegistrationResponse> call, Response<RegistrationResponse> response) {
 
                     registrationResponse = response.body();
+
                     if (registrationResponse.getMessage().equals("Registration successful..")){
                         Toast.makeText(getApplicationContext(),"Registration Succesfull",Toast.LENGTH_SHORT).show();
+
+
+                        new PrefManager(getApplicationContext()).saveEmail(email);
                         Intent i = new Intent(RegistrationActivity.this,MainActivity.class);
                         startActivity(i);
                         finish();
@@ -121,6 +127,8 @@ public class RegistrationActivity  extends RootActivity implements View.OnClickL
 
                 @Override
                 public void onFailure(Call<RegistrationResponse> call, Throwable t) {
+
+                    Toast.makeText(getApplicationContext(),"Registration Failed",Toast.LENGTH_SHORT).show();
 
                 }
             });

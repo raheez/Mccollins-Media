@@ -87,6 +87,13 @@ public class LoginActivity extends RootActivity {
                 startActivity(i);
             }
         });
+
+        email = new PrefManager(getApplicationContext()).getEmail();
+        if (!email.isEmpty()){
+            Intent i = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(i);
+            finish();
+        }
     }
 
     private void login(final String email, String password)  {
