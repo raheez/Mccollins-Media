@@ -58,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/distanceTv"
                 android:text="2.6KM"
+                android:textSize="10sp"
                 android:layout_marginTop="10dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
@@ -70,6 +71,7 @@
                 android:layout_below="@id/distanceTv"
                 android:layout_marginRight="10dp"
                 android:textSize="11sp"
+                android:textColor="@color/darkgrey"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="15dp"/>
 
@@ -105,6 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="30dp"
+                android:textSize="11sp"
                 android:layout_toLeftOf="@id/distanceTv"
                 android:layout_below="@id/titletv"
                  />

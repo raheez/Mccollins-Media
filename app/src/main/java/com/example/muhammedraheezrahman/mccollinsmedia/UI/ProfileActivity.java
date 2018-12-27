@@ -121,6 +121,14 @@ public class ProfileActivity extends RootActivity{
             }
         });
 
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                updateUser();
+
+            }
+        });
+
     }
 
     @Override
@@ -219,12 +227,12 @@ public class ProfileActivity extends RootActivity{
                     profileLayout.setVisibility(View.VISIBLE);
                 }
                 setUserDetails(userData);
-                Toast.makeText(getApplicationContext(),"Successfull",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"User Data Fetched Successfull",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(retrofit2.Call<LoginDetails> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),"Failure",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext()," User Data Fetching Failed",Toast.LENGTH_SHORT).show();
 
             }
         });
